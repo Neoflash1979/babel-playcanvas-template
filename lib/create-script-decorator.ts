@@ -45,6 +45,7 @@ export class ScriptTypeBase {
      * @type {pc.Application}
      * @memberof ScriptType
      */
+    // @ts-ignore
     app: pc.Application;
 
     /**
@@ -52,6 +53,7 @@ export class ScriptTypeBase {
      * @type {pc.Entity}
      * @memberof ScriptType
      */
+    // @ts-ignore
     entity: pc.Entity;
 
     /**
@@ -59,5 +61,6 @@ export class ScriptTypeBase {
      * @type {boolean}
      * @memberof ScriptType
      */
+    // @ts-ignore
     enabled: boolean;    
 }
