@@ -24,6 +24,28 @@ export const createScript = function(app?: pc.Application) {
                 script.prototype[prop] = instance[prop];
             }
         }
+        
+        // Add getters and setters to prototype
+        const prototypePropertyDescriptors = Object.getOwnPropertyDescriptors(
+            obj.prototype
+        );
+        for (const prop in prototypePropertyDescriptors) {
+            if (prop !== "constructor") {
+                const descriptors = prototypePropertyDescriptors[prop];
+                const { get, set } = descriptors;
+                
+                if (get || set) {
+                    const scriptDescriptor = {
+                        get,
+                        set,
+                        enumerable: false,
+                        configurable: true,
+                    };
+                    
+                    Object.defineProperty(script.prototype, prop, scriptDescriptor);
+                }
+            }
+        }
     
         // Add static properties
         for (let prop in obj) {
